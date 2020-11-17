@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  view이름을 객체로 연결 시켜주는 객체 -->
+	<bean id="viewReslover2" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<!-- 순서의 의미로 컨트롤러가 리턴하는 view이름을 먼저 해석을 하고,해당이름 객체가 없을시 value=1 인 viewResolver1이 검사한다. -->
+		<property name="order" value="0"></property>
+	</bean>
+
+</beans>

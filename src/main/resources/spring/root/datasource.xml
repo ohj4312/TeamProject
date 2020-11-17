@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close"> <!-- 직접적인 연결은 하지못함 oracle.jdbc.OracleDriver의 라이브러리를 통해 연결지원 -->
+		
+		<!-- 	
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>연결할때 쓰는 라이브러리를 뭘로할 지 정하는 것 ojdbc6.jar에 있는 클래스	
+		//ip,port번호,db명 정보 입력
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"></property> 
+		-->
+		
+		<property name="driverClassName" value="net.sf.log4jdbc.DriverSpy"/>
+		<property name="url" value="jdbc:log4jdbc:oracle:thin:@localhost:1521:orcl"/>
+		
+		<!-- 계정정보 패스워드 -->
+		<property name="username" value="user"></property>
+		<property name="password" value="kosa12345"></property>
+		<property name="maxTotal" value="1"></property>
+		<property name="initialSize" value="1"></property>
+		<property name="maxIdle" value="1"></property>
+	</bean>
+	
+	
+<!-- 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="classpath:mybatis/mapper-config.xml"></property>
+		<property name="mapperLocations" value="classpath:mybatis/mapper/*.xml"></property>
+	</bean>
+	
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg ref="sqlSessionFactory"/>
+		</bean>
+ -->
+</beans>
